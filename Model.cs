@@ -13,10 +13,10 @@ namespace test_sqlite_04_12_06_2023
     public class Human : INotifyPropertyChanged
     {
         public int Id { get; set; }
-        public string Name { get; set; } = "Первый1";
-        public string Surname { get; set; } = "Первый2";
+        public string Name { get; set; } = "NameConstr  ";
+        public string Surname { get; set; } = "SurnameConstr  ";
 
-       
+       public Human() { }
         public string NameBind
         {
             get { return Name; }
@@ -58,8 +58,8 @@ namespace test_sqlite_04_12_06_2023
 
         public void AssembleNewHuman() // стандартный набор собак
         {
-            AddHuman(new Human { Name = "Петр", Surname = "Петров" });
-           
+            AddHuman(new Human { Name = "Петр ", Surname = "Петров " });
+            AddHuman(new Human());
         }
 
         public List<Human> HumansList() // метод возвращает текущую коллекцию
@@ -73,11 +73,11 @@ namespace test_sqlite_04_12_06_2023
             HumanSync();
         }
 
-        //public void RemoveDog(Dog dog) // Удалить
-        //{
-        //    this.db.Dogs.Remove(dog);
-        //    Dogs_sync();
-        //}
+        public void RemoveHuman(Human human) // Удалить
+        {
+            this.db.Humans.Remove(human);
+            HumanSync();
+        }
 
         public void HumanSync() // Сохраняем изменения в бд
         {
@@ -102,5 +102,10 @@ namespace test_sqlite_04_12_06_2023
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-    }
+
+        //internal void RemoveHuman(object selectedHuman)
+        //{
+        //    throw new NotImplementedException();
+        //}
+}
 }

@@ -20,6 +20,10 @@ namespace test_sqlite_04_12_06_2023
     /// </summary>
     public partial class MainWindow : Window
     {
+        Human human;
+        Model Model = new Model();
+        private Human selectedHuman;
+
         public MainWindow()
         {
             DataContext = new ViewModel();

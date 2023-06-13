@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:test_sqlite_04_12_06_2023"
+        xmlns:local="clr-namespace:test_sqlite_04_12_06_2023" d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -20,8 +20,11 @@
             <RowDefinition Height="10*"/>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.ColumnSpan ="3" ItemsSource="{Binding HumanList}" Grid.RowSpan="2">
+        <ListBox Grid.ColumnSpan ="3" ItemsSource="{Binding HumanList}"  SelectedItem="{Binding SelectedHuman}" 
+                 Grid.RowSpan="4">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">
@@ -30,14 +33,20 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Grid.Column="3" Grid.Row="0"  ItemsSource="{Binding HumanList}" TextBlock.TextAlignment="Center" Grid.ColumnSpan="3" Margin="133,0,133,0" Grid.RowSpan="2">
+        <ListBox Grid.Column="3" Grid.Row="0"  ItemsSource="{Binding HumanList}" SelectedItem="{Binding SelectedHuman}"
+                 TextBlock.TextAlignment="Center" Grid.ColumnSpan="3" Grid.RowSpan="4">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Margin="5">
+                    <StackPanel  Margin="5" Orientation="Horizontal">
                         <TextBlock FontSize="18" Text="{Binding Path = SurnameBind}"/>
+                        <TextBlock FontSize="18" Text="{Binding Path = Id}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button x:Name="ButtAdd" Content="Добавить" Grid.Column="4" Grid.Row="5"
+                 />
+        <Button x:Name="ButtRemove" Content="Удалить" Grid.Column="3" Grid.Row="5"
+                Command="{Binding RemoveCommand}"  />
     </Grid>
 </Window>
