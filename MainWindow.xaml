@@ -38,6 +38,6 @@
         <Button x:Name="ButtAdd" Content="Добавить" Grid.Column="4" Grid.Row="5" Click="ButtAdd_Click"
                  />
         <Button x:Name="ButtRemove" Content="Удалить" Grid.Column="3" Grid.Row="5"
-                Command="{Binding  RemoveCommand}" CommandParameter="{Binding SelectedHuman}" Click="ButtRemove_Click"  />
+                Command="{Binding ShowCommand}" Click="ButtRemove_Click"  />
     </Grid>
 </Window>

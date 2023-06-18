@@ -9,6 +9,7 @@ using System.Windows;
 using System.ComponentModel;
 
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Windows.Input;
 
 namespace test_sqlite_04_12_06_2023
 {
@@ -30,13 +31,26 @@ namespace test_sqlite_04_12_06_2023
         // 13-06-2023 Мы научились удалять из списка по щелчку
         public Human SelectedHuman
         {
-            get { return  selectedHuman; }
+            get { return selectedHuman; }
             set
             {
-                this.selectedHuman = value;
-                //HumanList.Remove(value);
-                this.model.RemoveHuman(value);
-                this.model.HumanSync();
+                MessageBoxResult result;
+
+                result = MessageBox.Show("Удалить обьект?", "Question", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    this.selectedHuman = value;
+                    //HumanList.Remove(value);
+                    this.model.RemoveHuman(value);
+                    this.model.HumanSync();
+                    MessageBox.Show("Обьект удалён!");
+                }
+
+                else
+                {
+                    MessageBox.Show("Обьект не удалён!");
+                }
+
                 OnPropertyChanged("SelectedHuman");
             }
         }
@@ -51,19 +65,37 @@ namespace test_sqlite_04_12_06_2023
         //              OnPropertyChanged("humanlist");
         //              this.model.HumanSync();
         //          }));
-        private Command removeCommand;
-
-        public Command RemoveCommand => removeCommand ?? (removeCommand = new Command(obj =>
-                                                     {
-                                                         if (obj is Human oldhuman)
-                                                         {
-                                                             model.RemoveHuman(oldhuman);
-                                                             OnPropertyChanged("HumanList");
-                                                             MessageBox.Show("сработала команда RemoveCommand");
-                                                         }
-                                                     }
-                ));
-
+        private void OnShow()
+        {
+            ViewModel view = new ViewModel();
+            MessageBox.Show("Hi... " + MessageText, "Message", MessageBoxButton.OK);
+        }
+        private ICommand showCommand;
+        public ICommand ShowCommand
+        {
+            get
+            {
+                if (showCommand == null)
+                    showCommand = new RelayCommand(p => OnShow());
+               
+                //Hu.Items.Refresh();
+                //Hu.DataContext = new ViewModel(););
+                return showCommand;
+            }
+        }
+        private string messageText;
+        public string MessageText
+        {
+            get
+            {
+                return messageText;
+            }
+            set
+            {
+                messageText = value;
+                OnPropertyChanged("MessageText");
+            }
+        }
 
         //get
         //{

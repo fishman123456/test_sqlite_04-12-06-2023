@@ -22,8 +22,8 @@ namespace test_sqlite_04_12_06_2023
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ObservableCollection<Model> _list = new ObservableCollection<Model>();
-        
+        //private ObservableCollection<Model> _list = new ObservableCollection<Model>();
+        CommandBinding commandBinding = new CommandBinding();
         Model Model = new Model();
        
 

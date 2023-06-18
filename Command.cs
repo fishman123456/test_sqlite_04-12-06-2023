@@ -7,42 +7,37 @@ using System.Windows.Input;
 
 namespace test_sqlite_04_12_06_2023
 {
-    internal class Command
+    public class RelayCommand : ICommand
     {
-        private Action<object> value;
-        private Func<object, bool> value1;
+        private Action<object> execute;
+        private Func<object, bool> canExecute;
 
-        public Command(Action<object> value)
+        public RelayCommand(Action<object> execute)
         {
-            this.value = value;
+            this.execute = execute;
+            this.canExecute = null;
         }
-        internal sealed class Commandof : ICommand
+
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute)
         {
+            this.execute = execute;
+            this.canExecute = canExecute;
+        }
 
-            private Action<object> execute;
-            private Func<object, bool> canExecute;
-            // команда добавление / удаление обьекта
-            public event EventHandler CanExecuteChanged
-            {
-                add { CommandManager.RequerySuggested += value; }
-                remove { CommandManager.RequerySuggested -= value; }
-            }
-            // проверка на изменение обьекта, существует он или нет
-            public Commandof(Action<object> execute, Func<object, bool> canExecute = null)
-            {
-                this.execute = execute;
-                this.canExecute = canExecute;
-            }
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
 
-            public bool CanExecute(object parameter)
-            {
-                return this.canExecute == null || this.canExecute(parameter);
-            }
+        public bool CanExecute(object parameter)
+        {
+            return this.canExecute == null || this.CanExecute(parameter);
+        }
 
-            public void Execute(object parameter)
-            {
-                this.execute(parameter);
-            }
+        public void Execute(object parameter)
+        {
+            this.execute(parameter);
         }
     }
 }
