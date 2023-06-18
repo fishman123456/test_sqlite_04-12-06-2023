@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,14 +22,30 @@ namespace test_sqlite_04_12_06_2023
     /// </summary>
     public partial class MainWindow : Window
     {
-        Human human;
+        private ObservableCollection<Model> _list = new ObservableCollection<Model>();
+        
         Model Model = new Model();
-        private Human selectedHuman;
+       
 
         public MainWindow()
         {
             DataContext = new ViewModel();
             InitializeComponent();
+        }
+        List<Human> HumanList;
+
+        private void ButtRemove_Click(object sender, RoutedEventArgs e)
+        {
+            Hu.Items.Refresh();
+            Hu.DataContext = new ViewModel();
+           // MessageBox.Show("Объектов в базе данных: "  );
+            //ViewModel viewModel = new ViewModel();
+            // MainWindow window = new MainWindow();
+        }
+
+        private void ButtAdd_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

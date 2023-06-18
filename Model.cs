@@ -7,6 +7,7 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Windows;
 
 namespace test_sqlite_04_12_06_2023
 {
@@ -91,8 +92,8 @@ namespace test_sqlite_04_12_06_2023
         {
 
             this.db = new ApplicationContext();// создаем контекст (сессию для работы с бд)
-            this.AssembleNewHuman();
-            Debug.WriteLine("Объектов в базе данных: " + this.db.Humans.ToList<Human>().Count.ToString());
+           // this.AssembleNewHuman();
+           //MessageBox.Show ("Объектов в базе данных: " + this.db.Humans.ToList<Human>().Count.ToString());
         }
 
 

@@ -30,11 +30,11 @@ namespace test_sqlite_04_12_06_2023
         // 13-06-2023 Мы научились удалять из списка по щелчку
         public Human SelectedHuman
         {
-            get { return selectedHuman; }
+            get { return  selectedHuman; }
             set
             {
                 this.selectedHuman = value;
-                HumanList.Remove(value);
+                //HumanList.Remove(value);
                 this.model.RemoveHuman(value);
                 this.model.HumanSync();
                 OnPropertyChanged("SelectedHuman");
@@ -51,18 +51,18 @@ namespace test_sqlite_04_12_06_2023
         //              OnPropertyChanged("humanlist");
         //              this.model.HumanSync();
         //          }));
-        //private Command removeCommand;
+        private Command removeCommand;
 
-        //public Command RemoveCommand => removeCommand ?? (removeCommand = new Command(obj =>
-        //                                             {
-        //                                                 if (obj is Human oldhuman)
-        //                                                 {
-        //                                                     model.RemoveHuman(oldhuman);
-        //                                                     OnPropertyChanged("HumanList");
-        //                                                     MessageBox.Show("сработала команда RemoveCommand");
-        //                                                 }
-        //                                             }
-        //        ));
+        public Command RemoveCommand => removeCommand ?? (removeCommand = new Command(obj =>
+                                                     {
+                                                         if (obj is Human oldhuman)
+                                                         {
+                                                             model.RemoveHuman(oldhuman);
+                                                             OnPropertyChanged("HumanList");
+                                                             MessageBox.Show("сработала команда RemoveCommand");
+                                                         }
+                                                     }
+                ));
 
 
         //get
@@ -86,7 +86,7 @@ namespace test_sqlite_04_12_06_2023
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
-    
+
 }
 
 
