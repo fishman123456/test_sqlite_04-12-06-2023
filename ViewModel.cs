@@ -100,6 +100,10 @@ namespace test_sqlite_04_12_06_2023
                 //Hu.DataContext = new ViewModel(););
                 return addHumandCommand;
             }
+            set
+            {
+                this.model.HumanSync();
+            }
         }
         private string messageText;
         public string MessageText

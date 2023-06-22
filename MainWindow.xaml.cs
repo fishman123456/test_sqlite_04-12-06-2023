@@ -45,7 +45,8 @@ namespace test_sqlite_04_12_06_2023
 
         private void ButtAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            Hu.Items.Refresh();
+            Hu.DataContext = new ViewModel();
         }
     }
 }
