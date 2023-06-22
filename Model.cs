@@ -93,7 +93,7 @@ namespace test_sqlite_04_12_06_2023
 
             this.db = new ApplicationContext();// создаем контекст (сессию для работы с бд)
            // this.AssembleNewHuman();
-           //MessageBox.Show ("Объектов в базе данных: " + this.db.Humans.ToList<Human>().Count.ToString());
+           MessageBox.Show ("Объектов в базе данных: " + this.db.Humans.ToList<Human>().Count.ToString());
         }
 
 
@@ -104,9 +104,11 @@ namespace test_sqlite_04_12_06_2023
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
+       
+
         //internal void RemoveHuman(object selectedHuman)
         //{
         //    throw new NotImplementedException();
         //}
-}
+    }
 }

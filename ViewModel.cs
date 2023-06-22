@@ -67,7 +67,7 @@ namespace test_sqlite_04_12_06_2023
         //          }));
         private void OnShow()
         {
-            ViewModel view = new ViewModel();
+           // ViewModel view = new ViewModel();
             MessageBox.Show("Hi... " + MessageText, "Message", MessageBoxButton.OK);
         }
         private ICommand showCommand;
@@ -81,6 +81,24 @@ namespace test_sqlite_04_12_06_2023
                 //Hu.Items.Refresh();
                 //Hu.DataContext = new ViewModel(););
                 return showCommand;
+            }
+        }
+        private void addHuman()
+        {
+            // ViewModel view = new ViewModel();
+            model.AssembleNewHuman();
+        }
+        private ICommand addHumandCommand;
+        public ICommand AddHumandCommand
+        {
+            get
+            {
+                if (addHumandCommand == null)
+                    addHumandCommand = new RelayCommand(p => addHuman());
+
+                //Hu.Items.Refresh();
+                //Hu.DataContext = new ViewModel(););
+                return addHumandCommand;
             }
         }
         private string messageText;

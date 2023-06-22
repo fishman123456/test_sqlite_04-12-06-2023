@@ -36,7 +36,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button x:Name="ButtAdd" Content="Добавить" Grid.Column="4" Grid.Row="5" Click="ButtAdd_Click"
-                 />
+                Command="{Binding AddHumandCommand}" />
         <Button x:Name="ButtRemove" Content="Удалить" Grid.Column="3" Grid.Row="5"
                 Command="{Binding ShowCommand}" Click="ButtRemove_Click"  />
     </Grid>

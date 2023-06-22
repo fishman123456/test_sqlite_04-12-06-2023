@@ -38,7 +38,7 @@ namespace test_sqlite_04_12_06_2023
         {
             Hu.Items.Refresh();
             Hu.DataContext = new ViewModel();
-           // MessageBox.Show("Объектов в базе данных: "  );
+           //MessageBox.Show("Объектов в базе данных: "  );
             //ViewModel viewModel = new ViewModel();
             // MainWindow window = new MainWindow();
         }
