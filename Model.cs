@@ -76,8 +76,11 @@ namespace test_sqlite_04_12_06_2023
 
         public void RemoveHuman(Human human) // Удалить
         {
-            this.db.Humans.Remove(human);
-            HumanSync();
+            if (human != null)
+            {
+                this.db.Humans.Remove(human);
+                HumanSync();
+            }
         }
 
         public void HumanSync() // Сохраняем изменения в бд
@@ -85,6 +88,7 @@ namespace test_sqlite_04_12_06_2023
             this.db.SaveChanges();
             //MessageBox.Show("Объекты сохранены");
             OnPropertyChanged("HumanSync");// уведомляем отображение о изменении 
+            MessageBox.Show("Объектов в базе данных: " + this.db.Humans.ToList<Human>().Count.ToString());
         }
 
 
@@ -93,7 +97,7 @@ namespace test_sqlite_04_12_06_2023
 
             this.db = new ApplicationContext();// создаем контекст (сессию для работы с бд)
            // this.AssembleNewHuman();
-           MessageBox.Show ("Объектов в базе данных: " + this.db.Humans.ToList<Human>().Count.ToString());
+          
         }
 
 

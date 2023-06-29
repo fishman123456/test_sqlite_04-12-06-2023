@@ -37,7 +37,7 @@ namespace test_sqlite_04_12_06_2023
         private void ButtRemove_Click(object sender, RoutedEventArgs e)
         {
             Hu.Items.Refresh();
-            Hu.DataContext = new ViewModel();
+            Hu.DataContext = new ViewModel() { };
            //MessageBox.Show("Объектов в базе данных: "  );
             //ViewModel viewModel = new ViewModel();
             // MainWindow window = new MainWindow();
@@ -46,7 +46,13 @@ namespace test_sqlite_04_12_06_2023
         private void ButtAdd_Click(object sender, RoutedEventArgs e)
         {
             Hu.Items.Refresh();
-            Hu.DataContext = new ViewModel();
+            Hu.DataContext = new ViewModel() { };
+        }
+
+        private void ButtRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            //ViewModel model = new ViewModel();
+            Hu.DataContext = new ViewModel() { };
         }
     }
 }

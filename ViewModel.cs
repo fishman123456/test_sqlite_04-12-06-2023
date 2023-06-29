@@ -28,6 +28,8 @@ namespace test_sqlite_04_12_06_2023
             get { return this.model.HumansList(); }
 
         }
+
+
         // 13-06-2023 Мы научились удалять из списка по щелчку
         public Human SelectedHuman
         {
@@ -54,33 +56,26 @@ namespace test_sqlite_04_12_06_2023
                 OnPropertyChanged("SelectedHuman");
             }
         }
-        //private Command addcommand;
 
-        //public Command Addcommand => addcommand ??
-        //          (addcommand = new Command(obj =>
-        //          {
-        //              Human newhuman = new Human();
-        //              model.AddHuman(newhuman);
-        //              SelectedHuman = newhuman;
-        //              OnPropertyChanged("humanlist");
-        //              this.model.HumanSync();
-        //          }));
-        private void OnShow()
+
+        private void removeHuman()
         {
-           // ViewModel view = new ViewModel();
+           model.RemoveHuman(this.selectedHuman);
             MessageBox.Show("Hi... " + MessageText, "Message", MessageBoxButton.OK);
         }
-        private ICommand showCommand;
-        public ICommand ShowCommand
+        private ICommand removeHumandCommand;
+        public ICommand RemoveHumandCommand
         {
+           
             get
             {
-                if (showCommand == null)
-                    showCommand = new RelayCommand(p => OnShow());
-               
-                //Hu.Items.Refresh();
-                //Hu.DataContext = new ViewModel(););
-                return showCommand;
+                if (removeHumandCommand == null)
+                    removeHumandCommand = new RelayCommand(p => removeHuman());
+                //HumanList.Remove(value);
+                this.model.RemoveHuman(selectedHuman);
+                this.model.HumanSync();
+                MessageBox.Show("Обьект удалён!");
+                return removeHumandCommand;
             }
         }
         private void addHuman()

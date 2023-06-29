@@ -38,6 +38,8 @@
         <Button x:Name="ButtAdd" Content="Добавить" Grid.Column="4" Grid.Row="5" Click="ButtAdd_Click"
                 Command="{Binding AddHumandCommand}" />
         <Button x:Name="ButtRemove" Content="Удалить" Grid.Column="3" Grid.Row="5"
-                Command="{Binding ShowCommand}" Click="ButtRemove_Click"  />
+                Command="{Binding RemoveHumandCommand}" Click="ButtRemove_Click"  />
+        <Button x:Name="ButtRefresh" Content="Обновить" Grid.Column="5" Grid.Row="5"
+                Command="{Binding RefreshHumandCommand}" Click="ButtRefresh_Click"  />
     </Grid>
 </Window>
